@@ -19,34 +19,31 @@ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::net_api_plug
 sleep 2s
 
 #run booting sequences. sleep 1s between each sript for actions to get propagated
-./02*
-sleep 1s
+./02* 
 ./03*
-sleep 1s
-./04*
-sleep 1s
+./04_1*
+./04_2*
+#set contract setpriv might take too long so that it sometimes gets reject.
+#there fore run in three times to make sure that the contract is set properly
 ./05*
-sleep 1s
+./05*
+./05*
+##
 ./06*
-sleep 1s
 ./07*
 
 #run ryangenesis1 node. see /home/eos/ibct_bios/starting_node_config.ini for configurations.
-/home/eos/ibctprivate/node1/start.sh
+/home/eos/ibctprivate/node1/start.sh  &> /dev/null
 #give time for the node to be initialized
 sleep 2s
 
 ./cleos.sh system regproducer ryangenesis1 EOS8KdvkTPgvRHfW5zzTx8UsZaHeYycqgxyvC7Q6eHbqK8LijVQro "ibctmini.io" -p ryangenesis1
-sleep 1s
-./cleos.sh system delegatebw ryangenesis1 ryangenesis1  "1000000.0000 CR" "1000000.0000 CR"
-sleep 1s
+./cleos.sh system delegatebw ryangenesis1 ryangenesis1  "1000000.0000 CR" "1000000.0000 CR" 
 ./cleos.sh system voteproducer prods eosio ryangenesis1
-sleep 3s
-./cleos.sh get info
-sleep 1.5s
 # at this point you will see ryangensis1 as a head block producer
 
 #resign now
-./08*
-
+./08*  &> /dev/null
+sleep 2s
+./cleos.sh get info
 #now manually shutdown eosio nodeos
