@@ -38,7 +38,7 @@ sleep 2s
 #give time for the node to be initialized
 sleep 2s
 
-./cleos.sh system regproducer ryangenesis1 EOS8KdvkTPgvRHfW5zzTx8UsZaHeYycqgxyvC7Q6eHbqK8LijVQro "ibctmini.io" -p ryangenesis1
+./cleos.sh system regproducer ryangenesis1 EOS57wGFHsp85BV2o7WBfTLibUX8ZsbwFK5THmAQ6seKbgT3fsG3X "ibctmini.io" -p ryangenesis1
 ./cleos.sh system delegatebw ryangenesis1 ryangenesis1  "1000000.0000 CR" "1000000.0000 CR" 
 ./cleos.sh system voteproducer prods eosio ryangenesis1
 # at this point you will see ryangensis1 as a head block producer
