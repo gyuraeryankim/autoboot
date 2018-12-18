@@ -21,8 +21,8 @@ sleep 2s
 #run booting sequences. sleep 1s between each sript for actions to get propagated
 ./02* 
 ./03*
-./04_1*
-./04_2*
+./04_T*
+#./04_2*
 #set contract setpriv might take too long so that it sometimes gets reject.
 #there fore run in three times to make sure that the contract is set properly
 #changes: in order to prevent transactions taking more than 30ms and being refused, eosio::producer_plugin --max-transaction-time=300 parameter has been added to eosio node
@@ -39,8 +39,8 @@ sleep 2s
 sleep 2s
 
 ./cleos.sh system regproducer ryangenesis1 EOS57wGFHsp85BV2o7WBfTLibUX8ZsbwFK5THmAQ6seKbgT3fsG3X "ibctmini.io" -p ryangenesis1
-./cleos.sh system delegatebw ryangenesis1 ryangenesis1  "1000000.0000 CR" "1000000.0000 CR" 
-./cleos.sh system voteproducer prods eosio ryangenesis1
+./cleos.sh system delegatebw ryangenesis1 ryangenesis1  "75000000.0000 CR" "75000000.0000 CR" 
+./cleos.sh system voteproducer prods ryangenesis1 ryangenesis1
 # at this point you will see ryangensis1 as a head block producer
 
 #resign now
